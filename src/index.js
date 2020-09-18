@@ -9,16 +9,29 @@ class App extends React.Component {
     //We need to pass props into the constructor
     //And then calling the parent component with the super function.
     super(props);
+
+    //ONLY time you can direct assign is on creation. 
     this.state = {lat: null};
+
+    window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+            //We called set state to update the state of lat
+            //The render function is then updated almost. 
+            this.setState({lat: position.coords.latitude})
+
+            //NEVER update state object directly -
+            //this.state.lat = position.coords.latitude
+        },
+        (err) => {
+            this.setState({lat: 0})
+        }
+      );
   }
 
   //Must be defined
   render() {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => console.log(position),
-      (err) => console.log(err)
-    );
-    return <div>Latitude: </div>;
+
+    return <div>Latitude: {this.state.lat} </div>;
   }
 }
 
