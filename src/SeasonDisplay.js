@@ -3,7 +3,7 @@ import './SeasonDisplay.css'
 
 const seasonConfig = {
   summer: {
-    text: 'Lets hit the beach',
+    text: 'Let\'s hit the beach',
     iconName: 'sun',
   },
   winter: {
