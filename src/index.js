@@ -24,7 +24,6 @@ class App extends React.Component {
       },
       (err) => {
         console.log(err);
-        this.setState({ lat: 0 });
         this.setState({ errorMessage: err.message });
       }
     );
