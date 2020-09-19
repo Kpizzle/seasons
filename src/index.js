@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
   state = { lat: null, errorMessage: '' };
@@ -32,12 +33,7 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return (
-      <div>
-        <i className='spinner loading icon'></i>
-        Loading...
-      </div>
-    );
+    return <Spinner message='Please allow acccess to location' />;
   }
 }
 
