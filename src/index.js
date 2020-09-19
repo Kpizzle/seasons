@@ -23,8 +23,7 @@ class App extends React.Component {
     );
   }
 
-  //Must be defined
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>;
     }
@@ -34,6 +33,10 @@ class App extends React.Component {
     }
 
     return <Spinner message='Please allow acccess to location' />;
+  }
+  //Must be defined
+  render() {
+    return <div className='border red'>{this.renderContent()}</div>;
   }
 }
 
