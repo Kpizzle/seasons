@@ -24,7 +24,7 @@ class App extends React.Component {
       },
       (err) => {
         console.log(err);
-        this.setState({lat: 0})
+        this.setState({ lat: 0 });
         this.setState({ errorMessage: err.message });
       }
     );
@@ -32,13 +32,15 @@ class App extends React.Component {
 
   //Must be defined
   render() {
-    return (
-      <div>
-        Latitude: {this.state.lat}
-        <br />
-        Error: {this.state.errorMessage}{' '}
-      </div>
-    );
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>;
+    }
+
+    if (!this.state.errorMessage && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>;
+    }
+    
+    return <div>Loading...</div>
   }
 }
 
