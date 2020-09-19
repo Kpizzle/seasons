@@ -34,7 +34,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <i className='spinner icon'></i>
+        <i className='spinner loading icon'></i>
         Loading...
       </div>
     );
