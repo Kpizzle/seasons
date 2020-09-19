@@ -1,18 +1,12 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import ReactDom from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
-  //Not a required app - belongs to JS
-  constructor(props) {
-    //Called before render function, best place to set state
-    //We need to pass props into the constructor
-    //And then calling the parent component with the super function.
-    super(props);
+  state = { lat: null, errorMessage: '' };
 
-    //ONLY time you can direct assign is on creation.
-    this.state = { lat: null, errorMessage: '' };
-
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         //We called set state to update the state of lat
@@ -23,7 +17,6 @@ class App extends React.Component {
         //this.state.lat = position.coords.latitude
       },
       (err) => {
-        console.log(err);
         this.setState({ errorMessage: err.message });
       }
     );
@@ -36,10 +29,10 @@ class App extends React.Component {
     }
 
     if (!this.state.errorMessage && this.state.lat) {
-      return <div>Latitude: {this.state.lat}</div>;
+      return <SeasonDisplay lat={this.state.lat} />;
     }
-    
-    return <div>Loading...</div>
+
+    return <div>Loading...</div>;
   }
 }
 
